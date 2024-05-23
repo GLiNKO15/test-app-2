@@ -1,0 +1,22 @@
+<table style="border: 1px solid black">
+  <tr>
+    <th>City Name</th>
+    <th>Mo</th>
+    <th>Tu</th>
+    <th>We</th>
+    <th>Th</th>
+    <th>Fr</th>
+    <th>Sa</th>
+    <th>Su</th>
+  </tr>
+  <ng-container
+    *ngFor="let daily of dailys$ | async; index as i; trackBy: trackByFn"
+  >
+    <tr>
+      <td>{{ weatherNameLocation[i] }}</td>
+      <td *ngFor="let temp of daily; trackBy: trackByFn">
+        {{ temp.temp.day | temperature }}
+      </td>
+    </tr>
+  </ng-container>
+</table>

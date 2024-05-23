@@ -1,0 +1,23 @@
+<table style="border: 1px solid black">
+  <tr>
+    <th>City Name</th>
+    <th>3:00</th>
+    <th>6:00</th>
+    <th>9:00</th>
+    <th>12:00</th>
+    <th>15:00</th>
+    <th>18:00</th>
+    <th>21:00</th>
+    <th>24:00</th>
+  </tr>
+  <ng-container
+    *ngFor="let daily of hourly$ | async; index as i; trackBy: trackByFn"
+  >
+    <tr>
+      <td>{{ weatherNameLocation[i] }}</td>
+      <td *ngFor="let temp of daily; trackBy: trackByFn">
+        {{ temp.temp | temperature }}
+      </td>
+    </tr>
+  </ng-container>
+</table>
