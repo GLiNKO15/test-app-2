@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { WeatherService } from '../services/weather.service';
+import { WeatherService } from '../data-access/services/weather.service';
 import { Observable, first, map } from 'rxjs';
-import { LatLonEntity } from '../services/weather.types';
+import { LatLonEntity } from '../data-access/interfaces/weather.types';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -13,11 +13,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './search.component.html',
 })
 export class WeatherSearch {
-  searchInput = new FormControl('', Validators.required);
-  errorMessage$: Observable<string> | null = null;
-  router = inject(Router);
-
-  apiWeather = inject(WeatherService);
+  public readonly searchInput = new FormControl('', Validators.required);
+  public errorMessage$: Observable<string> | null = null;
+  private readonly router = inject(Router);
+  private readonly apiWeather = inject(WeatherService);
+  
   search() {
     if (this.searchInput.value) {
       this.apiWeather
@@ -40,11 +40,6 @@ export class WeatherSearch {
 
   onFormSubmit(value: Event) {
     const inputElement = value.target as HTMLInputElement;
-
-    if (inputElement.value == 'hourly') {
-      this.router.navigate(['hourly']);
-    } else {
-      this.router.navigate(['daily']);
-    }
+    this.router.navigate([inputElement.value]);
   }
 }

@@ -10,14 +10,14 @@ export const appRoutes: Route[] = [
         path: 'daily',
         loadComponent: () =>
           import(
-            './core/weather/libs/tables/daily/weather-daily.component'
+            './core/weather/libs/feature-tables/lib/feature-daily/weather-daily.component'
           ).then((c) => c.WeatherDailyTable),
       },
       {
         path: 'hourly',
         loadComponent: () =>
           import(
-            './core/weather/libs/tables/hourly/weather-hourly.component'
+            './core/weather/libs/feature-tables/lib/feature-hourly/weather-hourly.component'
           ).then((c) => c.WeatherHoulyTable),
       },
     ],

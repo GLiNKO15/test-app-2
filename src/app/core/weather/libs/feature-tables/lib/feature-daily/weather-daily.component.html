@@ -13,7 +13,7 @@
     *ngFor="let daily of dailys$ | async; index as i; trackBy: trackByFn"
   >
     <tr>
-      <td>{{ weatherNameLocation[i] }}</td>
+      <td>{{ (weatherNameLocation$ | async)![i] }}</td>
       <td *ngFor="let temp of daily; trackBy: trackByFn">
         {{ temp.temp.day | temperature }}
       </td>

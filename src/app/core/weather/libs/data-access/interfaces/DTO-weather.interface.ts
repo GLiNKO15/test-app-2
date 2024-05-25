@@ -1,16 +1,3 @@
-export interface LatLonInterface {
-  country: string;
-  lat: number;
-  lon: number;
-  local_names: {
-    [key: string]: string;
-  };
-  name: string;
-  state: string;
-};
-
-export type LatLonEntity = Pick<LatLonInterface, 'lat'| 'lon'>;
-
 export interface DTOWeatherData {
   lat: number;
   lon: number;
@@ -107,37 +94,3 @@ export interface DTOWeatherData {
   }[];
 }
 
-export type HourlyWeather = {
-  dt: number;
-  temp: number;
-  feels_like: number;
-  pressure: number;
-  humidity: number;
-  dew_point: number;
-  uvi: number;
-  clouds: number;
-  visibility: number;
-  wind_speed: number;
-  wind_deg: number;
-  wind_gust: number;
-  weather: {}[];
-  pop: number;
-};
-export type DailyWeather = {
-  dt: number;
-  sunrise: number;
-  sunset: number;
-  moonrise: number;
-  moonset: number;
-  moon_phase: number;
-  temp: {
-      day: number;
-      min: number;
-      max: number;
-      night: number;
-      eve: number;
-      morn: number;
-  };
-  feels_like: {};
-  uvi: number;
-}
