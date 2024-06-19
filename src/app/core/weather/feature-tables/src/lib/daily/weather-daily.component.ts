@@ -4,9 +4,9 @@ import {
   DoCheck,
   inject,
 } from '@angular/core';
-import { WeatherService } from '../../../data-access/services/weather.service';
+import { WeatherService } from '../../../../core/data-access/services/weather.service';
 import { CommonModule } from '@angular/common';
-import { TemperaturePipe } from '../ui/lib/pipes/weather.pipe';
+import { TemperaturePipe } from '../../../ui/weather.pipe';
 
 @Component({
   selector: 'weather-daily-table',
