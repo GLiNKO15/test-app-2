@@ -24,7 +24,7 @@ export class WeatherHoulyTable{
   public readonly weatherNameLocation$ = this.WeatherService.weatherNameLocation$;
   public readonly hourly$ = this.WeatherService.weatherHourly$;
 
-  trackByFn(index: number, item: any): number {
+  trackByFn(index: number, item: any): number{
     return item.id;
   }
 }
