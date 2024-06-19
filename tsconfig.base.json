@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@test-app/feature-search": [
+        "src/app/core/weather/feature-search/src/index.ts"
+      ],
+      "@test-app/feature-tables": [
+        "src/app/core/weather/feature-tables/src/index.ts"
+      ],
+      "@test-app/weather": ["src/app/core/weather/src/index.ts"],
+      "@test-app/weather1": ["src/app/core/weather1/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
