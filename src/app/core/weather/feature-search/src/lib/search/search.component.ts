@@ -1,41 +1,36 @@
-import { Component, inject } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { WeatherService } from '../../../../core/data-access/services/weather.service';
-import { Observable, first, map } from 'rxjs';
-import { LatLonEntity } from '../../../../core/data-access/interfaces/weather.types';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { WeatherApiService } from '../../../../core/data-access/services/weather-api.service';
+import { catchError, map, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'weather-search',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './search.component.html'
+  templateUrl: './search.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherSearch {
-  public readonly searchInput = new FormControl('', Validators.required);
-  public errorMessage$: Observable<string> | null = null;
+  searchStream$: Observable<unknown> = new Observable<unknown>();
   private readonly router = inject(Router);
-  private readonly apiWeather = inject(WeatherService);
+  private readonly WeatherApiService = inject(WeatherApiService);
+  private readonly destroyRef = inject(DestroyRef);
 
-  search() {
-    if (this.searchInput.value) {
-      this.apiWeather
-        .getLatLon(this.searchInput.value)
-        .pipe(
-          first(),
-          map((res) => {
-            if (typeof res === 'object' && res instanceof Observable) {
-              this.errorMessage$ = res;
-            } else {
-              this.errorMessage$ = null;
-              this.apiWeather.getWeather(res as LatLonEntity);
-            }
-            return res;
-          })
-        )
-        .subscribe();
-    }
+  search(str: string) {
+    this.searchStream$ = this.WeatherApiService
+      .getLatLon(str)
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        map((value) => {
+          if (typeof value == 'string') throw of(value);
+          return value;
+        }),
+        map((res) => this.WeatherApiService.getWeather(res)),
+        catchError((err) => err)
+      );
   }
 
   onFormSubmit(value: Event) {

@@ -1,12 +1,9 @@
 import { Route } from '@angular/router';
-// import { WeatherComponent } from './core/weather/src/lib/weather/weather.component';
 import { AppComponent } from './app.component';
 
 export const appRoutes: Route[] = [
   {
     path: '',
-    // loadComponent: () =>
-    //   import('./app.component').then((comp) => comp.AppComponent),
     children: [
       {
         path: 'daily',
@@ -20,7 +17,7 @@ export const appRoutes: Route[] = [
         loadComponent: () =>
           import(
             './core/weather/feature-tables/src/lib/hourly/weather-hourly.component'
-            ).then((c) => c.WeatherHoulyTable)
+            ).then((c) => c.WeatherHourlyTable)
       }
     ]
   }

@@ -1,4 +1,4 @@
-export interface LatLonInterface {
+export interface LatLonInfo {
   country: string;
   lat: number;
   lon: number;
@@ -7,6 +7,6 @@ export interface LatLonInterface {
   };
   name: string;
   state: string;
-};
+}
 
-export type LatLonEntity = Pick<LatLonInterface, 'lat'| 'lon'>;
+export type LatLonEntity = Pick<LatLonInfo, 'lat'| 'lon'>;

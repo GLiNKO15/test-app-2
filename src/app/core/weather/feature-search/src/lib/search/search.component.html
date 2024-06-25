@@ -1,8 +1,8 @@
-<input [formControl]="searchInput" type="text" />
-<button (click)="search()">Search</button>
+<input #searchInput type="text" />
+<button (click)="search(searchInput.value)">Search</button>
 
 <select (change)="onFormSubmit($event)">
   <option value="hourly">Hourly</option>
   <option value="daily">Daily</option>
 </select>
-<div>{{ errorMessage$ | async }}</div>
+<div>{{ searchStream$ | async }}</div>
