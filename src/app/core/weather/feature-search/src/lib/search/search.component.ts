@@ -11,7 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './search.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeatherSearch {
   searchStream$: Observable<unknown> = new Observable<unknown>();
