@@ -1,13 +1,18 @@
-export interface AllWeatherData {
+export interface WeatherInterface {
   lat: number;
   lon: number;
   timezone: string;
   timezone_offset: number;
+}
 
+export interface HourlyWeatherInterface extends WeatherInterface {
   hourly: {
     dt: number;
     temp: number;
   }[];
+}
+
+export interface DailyWeatherInterface extends WeatherInterface {
   daily: {
     dt: number;
     temp: {
@@ -19,6 +24,4 @@ export interface AllWeatherData {
       morn: number;
     }
   }[];
-
 }
-
