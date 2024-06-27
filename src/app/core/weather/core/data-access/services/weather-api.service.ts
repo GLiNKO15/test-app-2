@@ -24,7 +24,7 @@ export class WeatherApiService {
     weatherDaily$
       .pipe(
         first(),
-        tap((s)=>console.log(s)),
+        tap((s) => console.log(s)),
         map((weather) => weather.daily),
         map((s) => s.slice(0, -1)),
         tap((res) => this.pushArrBehaviorSubject(this.WeatherStateService.weatherDaily$, res))
@@ -34,7 +34,7 @@ export class WeatherApiService {
     weatherHourly$
       .pipe(
         first(),
-        tap((s)=>console.log(s)),
+        tap((s) => console.log(s)),
         map((weather) => weather.hourly),
         map((hourly) =>
           hourly.filter((elem, index) => index % 3 == 0 && index != 0)

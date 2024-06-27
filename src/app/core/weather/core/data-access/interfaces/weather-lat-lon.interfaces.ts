@@ -9,4 +9,4 @@ export interface LatLonInterface {
   state: string;
 }
 
-export type LatLonEntity = Pick<LatLonInterface, 'lat'| 'lon'>;
+export type LatLonEntity = Pick<LatLonInterface, 'lat' | 'lon'>;
